@@ -97,7 +97,7 @@ where
                 iced_widget::Text::new(icon_to_char(Icon::X).to_string())
                     .horizontal_alignment(alignment::Horizontal::Center)
                     .width(Length::Fill)
-                    .font(crate::ICON_FONT),
+                    .font(crate::AW_ICON_FONT),
             )
             .width(Length::Fill)
             .on_press(on_cancel.clone()),
@@ -106,7 +106,7 @@ where
                 iced_widget::Text::new(icon_to_char(Icon::Check).to_string())
                     .horizontal_alignment(alignment::Horizontal::Center)
                     .width(Length::Fill)
-                    .font(crate::ICON_FONT),
+                    .font(crate::AW_ICON_FONT),
             )
             .width(Length::Fill)
             .on_press(on_cancel), // Sending a fake message
@@ -1387,7 +1387,7 @@ fn rgba_color<Theme>(
                 ..label_layout.bounds()
             },
             size: renderer.default_size(),
-            font: crate::ICON_FONT,
+            font: crate::AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: text::LineHeight::Relative(1.3),
@@ -1665,11 +1665,11 @@ where
     fn default() -> Self {
         Self {
             cancel_button: Button::new(
-                widget::Text::new(icon_to_char(Icon::X).to_string()).font(crate::ICON_FONT),
+                widget::Text::new(icon_to_char(Icon::X).to_string()).font(crate::AW_ICON_FONT),
             )
             .into(),
             submit_button: Button::new(
-                widget::Text::new(icon_to_char(Icon::Check).to_string()).font(crate::ICON_FONT),
+                widget::Text::new(icon_to_char(Icon::Check).to_string()).font(crate::AW_ICON_FONT),
             )
             .into(),
         }

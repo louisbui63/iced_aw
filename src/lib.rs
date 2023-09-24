@@ -61,7 +61,7 @@ use iced_widget::{renderer, style as iced_style};
 mod platform {
     #[doc(no_inline)]
     #[cfg(feature = "icons")]
-    pub use {crate::graphics::icons::Icon, crate::graphics::icons::ICON_FONT};
+    pub use {crate::graphics::icons::Icon, crate::graphics::icons::AW_ICON_FONT};
 
     #[doc(no_inline)]
     #[cfg(feature = "icon_text")]

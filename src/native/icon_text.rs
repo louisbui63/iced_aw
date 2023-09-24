@@ -17,7 +17,7 @@ use iced_widget::{
     text::LineHeight,
 };
 
-use crate::graphics::icons::ICON_FONT;
+use crate::graphics::icons::AW_ICON_FONT;
 /// Text widget with icon font.
 #[allow(missing_debug_implementations)]
 pub struct IconText<Renderer: core::text::Renderer<Font = core::Font> = crate::Renderer> {
@@ -171,7 +171,7 @@ where
             bounds: Rectangle { x, y, ..bounds },
             size: self.size.unwrap_or_else(|| renderer.default_size()),
             color: self.color.unwrap_or(style.text_color),
-            font: self.font.unwrap_or(ICON_FONT),
+            font: self.font.unwrap_or(AW_ICON_FONT),
             horizontal_alignment: self.horizontal_alignment,
             vertical_alignment: self.vertical_alignment,
             line_height: LineHeight::Relative(1.3),

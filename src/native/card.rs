@@ -17,7 +17,7 @@ use iced_widget::{
     text::LineHeight,
 };
 
-use crate::graphics::icons::{Icon, ICON_FONT};
+use crate::graphics::icons::{Icon, AW_ICON_FONT};
 pub use crate::style::card::{Appearance, StyleSheet};
 
 /// The default padding of a [`Card`](Card).
@@ -746,7 +746,7 @@ fn draw_head<Message, Renderer>(
             size: close_size.unwrap_or_else(|| renderer.default_size())
                 + if is_mouse_over_close { 1.0 } else { 0.0 },
             color: style_sheet.close_color,
-            font: ICON_FONT,
+            font: AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: LineHeight::Relative(1.3),

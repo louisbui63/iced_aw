@@ -30,7 +30,7 @@ use crate::{
         overlay::Position,
     },
     date_picker,
-    graphics::icons::{Icon, ICON_FONT},
+    graphics::icons::{Icon, AW_ICON_FONT},
     native::IconText,
     style::style_state::StyleState,
 };
@@ -391,7 +391,7 @@ where
                                 .push(
                                     Text::new(char::from(Icon::CaretLeftFill).to_string())
                                         .size(font_size + 1.0)
-                                        .font(ICON_FONT),
+                                        .font(AW_ICON_FONT),
                                 ),
                         )
                         .height(Length::Shrink),
@@ -407,7 +407,7 @@ where
                         Container::new(
                             Text::new(char::from(Icon::CaretRightFill).to_string())
                                 .size(font_size + 1.0)
-                                .font(ICON_FONT),
+                                .font(AW_ICON_FONT),
                         )
                         .height(Length::Shrink)
                         .width(Length::Shrink),
@@ -423,7 +423,7 @@ where
                                 .push(
                                     Text::new(char::from(Icon::CaretLeftFill).to_string())
                                         .size(font_size + 1.0)
-                                        .font(ICON_FONT),
+                                        .font(AW_ICON_FONT),
                                 ),
                         )
                         .height(Length::Shrink)
@@ -442,7 +442,7 @@ where
                                 .push(
                                     Text::new(char::from(Icon::CaretRightFill).to_string())
                                         .size(font_size + 1.0)
-                                        .font(ICON_FONT),
+                                        .font(AW_ICON_FONT),
                                 ),
                         )
                         .height(Length::Shrink)
@@ -1117,7 +1117,7 @@ fn month_year<Theme>(
                 .get(&style_state)
                 .expect("Style Sheet not found.")
                 .text_color,
-            font: ICON_FONT,
+            font: AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: text::LineHeight::Relative(1.3),
@@ -1157,7 +1157,7 @@ fn month_year<Theme>(
                 .get(&style_state)
                 .expect("Style Sheet not found.")
                 .text_color,
-            font: ICON_FONT,
+            font: AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: text::LineHeight::Relative(1.3),

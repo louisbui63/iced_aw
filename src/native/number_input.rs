@@ -27,7 +27,7 @@ use num_traits::{Num, NumAssignOps};
 use std::{fmt::Display, str::FromStr};
 
 pub use crate::{
-    graphics::icons::{Icon, ICON_FONT},
+    graphics::icons::{Icon, AW_ICON_FONT},
     style::number_input::{self, Appearance, StyleSheet},
 };
 
@@ -710,7 +710,7 @@ where
             },
             size: icon_size,
             color: decrease_btn_style.icon_color,
-            font: ICON_FONT,
+            font: AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: LineHeight::Relative(1.3),
@@ -739,7 +739,7 @@ where
             },
             size: icon_size,
             color: increase_btn_style.icon_color,
-            font: ICON_FONT,
+            font: AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: LineHeight::Relative(1.3),

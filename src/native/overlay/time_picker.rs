@@ -1421,7 +1421,7 @@ fn draw_digital_clock<Message, Theme>(
                 .get(&StyleState::Active)
                 .expect("Style Sheet not found.")
                 .text_color,
-            font: crate::graphics::icons::ICON_FONT,
+            font: crate::graphics::icons::AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: text::LineHeight::Relative(1.3),
@@ -1461,7 +1461,7 @@ fn draw_digital_clock<Message, Theme>(
                 .get(&StyleState::Active)
                 .expect("Style Sheet not found.")
                 .text_color,
-            font: crate::graphics::icons::ICON_FONT,
+            font: crate::graphics::icons::AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: text::LineHeight::Relative(1.3),

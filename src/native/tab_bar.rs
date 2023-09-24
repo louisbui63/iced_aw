@@ -520,7 +520,10 @@ where
                 self.style,
                 i == self.get_active_tab_idx(),
                 cursor,
-                (self.icon_font.unwrap_or(icons::ICON_FONT), self.icon_size),
+                (
+                    self.icon_font.unwrap_or(icons::AW_ICON_FONT),
+                    self.icon_size,
+                ),
                 (self.text_font.unwrap_or_default(), self.text_size),
                 self.close_size,
             );
@@ -677,7 +680,7 @@ fn draw_tab<Renderer>(
             },
             size: close_size + if is_mouse_over_cross { 1.0 } else { 0.0 },
             color: style.icon_color,
-            font: icons::ICON_FONT,
+            font: icons::AW_ICON_FONT,
             horizontal_alignment: Horizontal::Center,
             vertical_alignment: Vertical::Center,
             line_height: LineHeight::Relative(1.3),

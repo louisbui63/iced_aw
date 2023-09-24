@@ -190,19 +190,42 @@ where
                 build_grid(columns, column_aligns, layouts.into_iter(), grid_width)
             }
             // find number of columns by checking how many can fit
+            // Strategy::ColumnWidth(column_width) => {
+            //     let column_limits = limits.width(Length::Fixed(column_width));
+            //     let max_width = limits.max().width;
+            //     let columns = (max_width / column_width).floor() as usize;
+            //
+            //     let layouts = self
+            //         .elements
+            //         .iter()
+            //         .map(|element| element.as_widget().layout(renderer, &column_limits));
+            //     let column_aligns =
+            //         std::iter::successors(Some(0.), |width| Some(width + column_width));
+            //     #[allow(clippy::cast_precision_loss)] // TODO: possible precision loss
+            //     let grid_width = (columns as f32) * column_width;
+            //
+            //     build_grid(columns, column_aligns, layouts, grid_width)
+            // }
             Strategy::ColumnWidth(column_width) => {
                 let column_limits = limits.width(Length::Fixed(column_width));
                 let max_width = limits.max().width;
                 let columns = (max_width / column_width).floor() as usize;
 
+                ////////////
+                // let margin = (max_width - columns as f32 * column_width) / columns as f32;
+                // if margin isn't an integer, images might not be aligned with the pixel grid
+                let margin = (max_width as usize - columns * column_width as usize) / columns;
+                ////////////
+
                 let layouts = self
                     .elements
                     .iter()
                     .map(|element| element.as_widget().layout(renderer, &column_limits));
-                let column_aligns =
-                    std::iter::successors(Some(0.), |width| Some(width + column_width));
+                let column_aligns = std::iter::successors(Some(0.), |width| {
+                    Some(width + column_width + margin as f32)
+                });
                 #[allow(clippy::cast_precision_loss)] // TODO: possible precision loss
-                let grid_width = (columns as f32) * column_width;
+                let grid_width = (columns as f32) * (column_width + margin as f32);
 
                 build_grid(columns, column_aligns, layouts, grid_width)
             }
@@ -330,8 +353,10 @@ fn build_grid(
             row_height = 0.;
         }
 
+        // println!("{}:{}", column_align, grid_height);
         node.move_to(Point::new(column_align, grid_height));
-        row_height = row_height.max(node.size().height);
+        row_height = row_height.max(node.size().height.ceil());
+        // println!("{}", node.size().height);
         nodes.push(node);
     }
 

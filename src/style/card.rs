@@ -9,7 +9,7 @@ use iced_widget::{
 };
 
 /// The appearance of a [`Card`](crate::native::card::Card).
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, serde::Deserialize, serde::Serialize)]
 pub struct Appearance {
     /// The background of the [`Card`](crate::native::card::Card).
     pub background: Background,
