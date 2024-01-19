@@ -73,10 +73,16 @@ chrono = { version = "0.4.34", optional = true }
 once_cell = { version = "1.19.0", optional = true }
 itertools = { version = "0.12.1", optional = true }
 
-[dependencies.iced]
+
+[dependencies.iced_widget]
+path = "../iced/widget"
+# git = "https://github.com/iced-rs/iced.git"
+#rev = "b474a2b7a763dcde6a377cb409001a7b5285ee8d"
+#version = "0.1.1"
+
+#[dependencies.iced_renderer]
 #git = "https://github.com/iced-rs/iced.git"
 #rev = "b474a2b7a763dcde6a377cb409001a7b5285ee8d"
-version = "0.12.1"
 default-features = false
 features = ["advanced"]
 
@@ -119,6 +125,8 @@ members = [
 
 [workspace.dependencies.iced]
 #git = "https://github.com/iced-rs/iced.git"
+path = "../iced/"
+# git = "https://github.com/iced-rs/iced.git"
 #rev = "b474a2b7a763dcde6a377cb409001a7b5285ee8d"
 version = "0.12.1"
 default-features = false
@@ -127,3 +135,4 @@ features = ["advanced"]
 [workspace.dependencies.iced_aw]
 path = "./"
 default-features = false
+features = ["num-traits"]
