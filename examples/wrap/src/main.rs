@@ -90,7 +90,7 @@ impl Application for RandStrings {
         (
             Self::Loading,
             Command::batch(vec![
-                font::load(iced_aw::graphics::icons::BOOTSTRAP_FONT_BYTES).map(Message::FontLoaded),
+                font::load(iced_aw::BOOTSTRAP_FONT_BYTES).map(Message::FontLoaded),
                 Command::perform(load(), Message::Loaded),
             ]),
         )
@@ -186,7 +186,7 @@ impl Application for RandStrings {
                 .width(iced::Length::FillPortion(5));
                 let align_picklist = PickList::new(
                     vec![WrapAlign::Start, WrapAlign::Center, WrapAlign::End],
-                    Some(state.align.into()),
+                    Some(Into::<WrapAlign>::into(state.align)),
                     Message::ChangeAlign,
                 );
                 let spacing_input =

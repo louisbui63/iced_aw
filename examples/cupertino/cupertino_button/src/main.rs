@@ -1,10 +1,10 @@
 use iced::{
     alignment, executor, font,
     widget::{column, container, text, Text},
-    Application, Command, Element, Length, Renderer, Settings, Theme,
+    Application, Command, Element, Length, Settings, Theme,
 };
 
-use iced_aw::native::cupertino::cupertino_button::CupertinoButton;
+use iced_aw::widgets::cupertino::cupertino_button::CupertinoButton;
 
 pub fn main() -> iced::Result {
     ButtonApp::run(Settings {
@@ -42,7 +42,7 @@ impl Application for ButtonApp {
 
     fn new(_flags: ()) -> (Self, Command<Message>) {
         (ButtonApp::Loading, Command::batch(vec![
-            font::load(iced_aw::graphics::SF_UI_ROUNDED_BYTES).map(Message::FontLoaded),
+            font::load(iced_aw::SF_UI_ROUNDED_BYTES).map(Message::FontLoaded),
             Command::perform(load(), Message::Loaded),
         ]))
     }
@@ -69,7 +69,7 @@ impl Application for ButtonApp {
     }
 
     fn view(&self) -> Element<Message> {
-        let disabled: CupertinoButton<Message, Renderer> = CupertinoButton::new()
+        let disabled  = CupertinoButton::new()
             .on_pressed(None)
             .body(Text::new("Disabled")
                 .size(24)
@@ -78,7 +78,7 @@ impl Application for ButtonApp {
                 .height(Length::Fixed(50.0))
             );
 
-        let disabled_filled: CupertinoButton<Message, Renderer> = CupertinoButton::new()
+        let disabled_filled  = CupertinoButton::new()
             .on_pressed(None)
             .is_filled(true)
             .body(Text::new("Disabled")
@@ -88,7 +88,7 @@ impl Application for ButtonApp {
                 .height(Length::Fixed(50.0))
             );
 
-        let enabled: CupertinoButton<Message, Renderer> = CupertinoButton::new()
+        let enabled = CupertinoButton::new()
             .on_pressed(Some(Message::EnabledButtonClicked))
             .body(Text::new("Enabled")
                 .size(24)
@@ -97,7 +97,7 @@ impl Application for ButtonApp {
                 .height(Length::Fixed(50.0))
             );
 
-        let enabled_filled: CupertinoButton<Message, Renderer> = CupertinoButton::new()
+        let enabled_filled = CupertinoButton::new()
             .on_pressed(Some(Message::EnabledFilledButtonClicked))
             .is_filled(true)
             .body(Text::new("Enabled")

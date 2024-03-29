@@ -133,6 +133,24 @@
         {
             "type": "lldb",
             "request": "launch",
+            "name": "Debug executable 'multiple_modals'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=multiple_modals",
+                    "--package=multiple_modals"
+                ],
+                "filter": {
+                    "name": "multiple_modals",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
             "name": "Debug executable 'color_picker'",
             "cargo": {
                 "args": [
@@ -178,6 +196,24 @@
                 ],
                 "filter": {
                     "name": "floating_element",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'floating_element_overlay'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=floating_element_overlay",
+                    "--package=floating_element_overlay"
+                ],
+                "filter": {
+                    "name": "floating_element_overlay",
                     "kind": "bin"
                 }
             },
