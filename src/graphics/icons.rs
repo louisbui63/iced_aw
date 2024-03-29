@@ -17,7 +17,7 @@ cfg_if! {
         /// The bootstrap icon font.
         pub const BOOTSTRAP_FONT: Font = Font::with_name("bootstrap-icons");
         /// The nerd icon font.
-        pub const NERD_FONT: Font = Font::with_name("nerd-icons");
+        pub const NERD_FONT: Font = Font::with_name("Symbols Nerd Font");
 
     } else {
         pub mod required;

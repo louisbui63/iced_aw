@@ -141,3 +141,8 @@ pub type SegmentedButton<'a, Message, Renderer> =
 pub mod slide_bar;
 #[cfg(feature = "slide_bar")]
 pub use slide_bar::SlideBar;
+
+#[cfg(feature = "old_grid")]
+pub mod oldgrid;
+#[cfg(feature = "slide_bar")]
+pub use oldgrid::OldGrid;

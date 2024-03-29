@@ -59,6 +59,9 @@ use iced_widget::{renderer, style as iced_style};
 /// Exports for all platforms that are not WASM32.
 mod platform {
     #[doc(no_inline)]
+    #[cfg(feature = "old_grid")]
+    pub use crate::native::oldgrid::OldGrid;
+    #[doc(no_inline)]
     #[cfg(feature = "icons")]
     pub use {
         crate::graphics::icons::{nerd::NerdIcon, BootstrapIcon},

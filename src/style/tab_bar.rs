@@ -14,7 +14,7 @@ use iced_widget::{
 };
 
 /// The appearance of a [`TabBar`](crate::native::tab_bar::TabBar).
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, serde::Serialize, serde::Deserialize)]
 pub struct Appearance {
     /// The background of the tab bar.
     pub background: Option<Background>,
