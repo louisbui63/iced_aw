@@ -3,13 +3,16 @@
 //! *This API requires the following crate features to be activated: `grid`*
 use std::any::type_name;
 
-use iced_widget::core::{
-    self, event,
-    layout::{Limits, Node},
-    mouse::{self, Cursor},
-    overlay, renderer,
-    widget::{Operation, Tree},
-    Clipboard, Element, Event, Layout, Length, Point, Rectangle, Shell, Size, Widget,
+use iced::{
+    advanced::{
+        self,
+        layout::{Limits, Node},
+        mouse::{self, Cursor},
+        overlay, renderer,
+        widget::{Operation, Tree},
+        Clipboard, Layout, Shell, Widget,
+    },
+    event, Element, Event, Length, Point, Rectangle, Size, Theme,
 };
 
 /// A container that distributes its contents in a grid.
@@ -32,11 +35,14 @@ use iced_widget::core::{
 ///
 /// ```
 #[allow(missing_debug_implementations)]
-pub struct OldGrid<'a, Message, Renderer = crate::Renderer> {
+pub struct OldGrid<'a, Message, Theme = iced::Theme, Renderer = iced::Renderer>
+where
+    Renderer: renderer::Renderer,
+{
     /// The distribution [`Strategy`](Strategy) of the [`Grid`](Grid).
     strategy: Strategy,
     /// The elements in the [`Grid`](Grid).
-    elements: Vec<Element<'a, Message, Renderer>>,
+    elements: Vec<Element<'a, Message, Theme, Renderer>>,
 }
 
 /// The [`Strategy`](Strategy) of how to distribute the columns of the [`Grid`](Grid).
@@ -54,9 +60,9 @@ impl Default for Strategy {
     }
 }
 
-impl<'a, Message, Renderer> OldGrid<'a, Message, Renderer>
+impl<'a, Message, Theme, Renderer> OldGrid<'a, Message, Theme, Renderer>
 where
-    Renderer: core::Renderer,
+    Renderer: renderer::Renderer,
 {
     /// Creates a [`Grid`](Grid) with ``Strategy::Columns(1)``
     /// Use ``strategy()`` to update the Strategy.
@@ -68,7 +74,7 @@ where
     /// Creates a [`Grid`](Grid) with given elements and ``Strategy::Columns(1)``
     /// Use ``strategy()`` to update the Strategy.
     #[must_use]
-    pub fn with_children(children: Vec<Element<'a, Message, Renderer>>) -> Self {
+    pub fn with_children(children: Vec<Element<'a, Message, Theme, Renderer>>) -> Self {
         Self {
             strategy: Strategy::default(),
             elements: children,
@@ -107,7 +113,7 @@ where
     #[must_use]
     pub fn push<E>(mut self, element: E) -> Self
     where
-        E: Into<Element<'a, Message, Renderer>>,
+        E: Into<Element<'a, Message, Theme, Renderer>>,
     {
         self.elements.push(element.into());
         self
@@ -116,15 +122,15 @@ where
     /// Inserts an [`Element`](Element) into the [`Grid`](Grid).
     pub fn insert<E>(&mut self, element: E)
     where
-        E: Into<Element<'a, Message, Renderer>>,
+        E: Into<Element<'a, Message, Theme, Renderer>>,
     {
         self.elements.push(element.into());
     }
 }
 
-impl<'a, Message, Renderer> Default for OldGrid<'a, Message, Renderer>
+impl<'a, Message, Theme, Renderer> Default for OldGrid<'a, Message, Theme, Renderer>
 where
-    Renderer: core::Renderer,
+    Renderer: renderer::Renderer,
 {
     fn default() -> Self {
         Self {
@@ -134,9 +140,10 @@ where
     }
 }
 
-impl<'a, Message, Renderer> Widget<Message, Renderer> for OldGrid<'a, Message, Renderer>
+impl<'a, Message, Theme, Renderer> Widget<Message, Theme, Renderer>
+    for OldGrid<'a, Message, Theme, Renderer>
 where
-    Renderer: core::Renderer,
+    Renderer: renderer::Renderer,
 {
     fn children(&self) -> Vec<Tree> {
         self.elements.iter().map(Tree::new).collect()
@@ -323,7 +330,7 @@ where
         &self,
         state: &Tree,
         renderer: &mut Renderer,
-        theme: &Renderer::Theme,
+        theme: &Theme,
         style: &renderer::Style,
         layout: Layout<'_>,
         cursor: Cursor,
@@ -346,8 +353,9 @@ where
         tree: &'b mut Tree,
         layout: Layout<'_>,
         renderer: &Renderer,
-    ) -> Option<overlay::Element<'b, Message, Renderer>> {
-        overlay::from_children(&mut self.elements, tree, layout, renderer)
+        translation: iced::Vector,
+    ) -> Option<overlay::Element<'b, Message, Theme, Renderer>> {
+        overlay::from_children(&mut self.elements[..], tree, layout, renderer, translation)
     }
 }
 
@@ -378,12 +386,14 @@ fn build_grid(
     Node::with_children(Size::new(grid_width, grid_height), nodes)
 }
 
-impl<'a, Message, Renderer> From<OldGrid<'a, Message, Renderer>> for Element<'a, Message, Renderer>
+impl<'a, Message, Theme, Renderer> From<OldGrid<'a, Message, Theme, Renderer>>
+    for Element<'a, Message, Theme, Renderer>
 where
-    Renderer: core::Renderer + 'a,
+    Renderer: renderer::Renderer + 'a,
     Message: 'static,
+    Theme: 'a,
 {
-    fn from(grid: OldGrid<'a, Message, Renderer>) -> Element<'a, Message, Renderer> {
+    fn from(grid: OldGrid<'a, Message, Theme, Renderer>) -> Element<'a, Message, Theme, Renderer> {
         Element::new(grid)
     }
 }

@@ -70,7 +70,7 @@ mod platform {
 
     #[doc(no_inline)]
     #[cfg(feature = "old_grid")]
-    pub use crate::native::oldgrid::OldGrid;
+    pub use {crate::widgets::oldgrid, oldgrid::OldGrid};
 
     #[doc(no_inline)]
     #[cfg(feature = "badge")]
